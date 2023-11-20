@@ -1,5 +1,5 @@
 INSERT INTO
-    { { params.target_table } }(
+    {{ params.target_table }}(
         VENDOR_KEY,
         TPEP_PICKUP_DATE_KEY,
         TPEP_DROPOFF_DATE_KEY,
@@ -45,4 +45,4 @@ SELECT
     CONGESTION_SURCHARGE,
     AIRPORT_FEE
 FROM
-    { { params.source_table } }
+    {{ params.source_table }}
