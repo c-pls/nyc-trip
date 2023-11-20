@@ -21,7 +21,7 @@ SELECT
     CONGESTION_SURCHARGE,
     AIRPORT_FEE
 FROM
-     YELLOW_TRIP_RECORD_RAW rt
+    NYC_TRIP.RAW.YELLOW_TRIP_RECORD_RAW rt
     INNER JOIN NYC_TRIP.STAGING.TAXI_ZONE_DIMENSION tzd_pu ON rt.pulocationid = tzd_pu.locationid
     INNER JOIN NYC_TRIP.STAGING.TAXI_ZONE_DIMENSION tzd_do ON rt.dolocationid = tzd_do.locationid
     INNER JOIN NYC_TRIP.STAGING.DATE_DIMENSION dd_pu ON TO_DATE(rt.tpep_pickup_datetime) = dd_pu.date
