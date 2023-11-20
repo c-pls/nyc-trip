@@ -1,0 +1,4 @@
+astronomer-cosmos
+dbt-core
+dbt-snowflake
+openlineage-integration-common>=1.2.0 # Fix dbt target_path
