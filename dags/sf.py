@@ -54,3 +54,19 @@ def load_to_raw_table(trip_type: str):
             schema=config.SNOWFLAKE_RAW_SCHEMA,
         )
         sf_hook.run(sql=sql)
+
+
+def insert_to_production_table(trip_type: str):
+    insert_to_production_table = SnowflakeOperator(
+        task_id="insert_to_production_table",
+        snowflake_conn_id=config.SNOWFLAKE_CONN_ID,
+        database=config.SNOWFLAKE_DATABASE,
+        schema=config.SNOWFLAKE_PRODUCTION_SCHEMA,
+        sql=f"sql/trip/{trip_type}/insert.sql",
+        params={
+            "target_table": f"{config.SNOWFLAKE_PRODUCTION_SCHEMA}.{config.SNOwFLAKE_FACT_TABLE.get(trip_type)}",
+            "source_table": f"{config.SNOwFLAKE_STAGING_SCHEMA}.{config.SNOwFLAKE_FACT_TABLE.get(trip_type)}",
+        },
+    )
+
+    return insert_to_production_table

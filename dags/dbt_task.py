@@ -10,7 +10,7 @@ profile_config = ProfileConfig(
         conn_id="snowflake_conn",
         profile_args={
             "database": config.SNOWFLAKE_DATABASE,
-            "schema": "RAW",
+            "schema": "STAGING",
         },
     ),
 )
@@ -18,6 +18,7 @@ profile_config = ProfileConfig(
 
 def dbt_task():
     dbt_tg = DbtTaskGroup(
+        group_id="dbt_transform_fact_table",
         project_config=ProjectConfig(
             dbt_project_path=Path(f"{config.HOME_DIR}/dbt/nyc_trip")
         ),

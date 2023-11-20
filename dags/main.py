@@ -11,8 +11,11 @@ from sf import (
     create_external_stage_s3,
     load_to_raw_table,
     truncate_raw_table,
+    insert_to_production_table,
 )
 from dbt_task import dbt_task
+
+TRIP_TYPE_LIST = ["yellow", "green"]
 
 default_args = {
     "owner": "Chinh Pham",
@@ -25,8 +28,6 @@ default_args = {
 
 @task_group(group_id="ingestion")
 def ingestion_groups():
-    trip_type_list = ["yellow", "green"]
-
     def build_group(trip_type: str):
         @task_group(group_id=f"{trip_type}")
         def ingestion():
@@ -49,7 +50,19 @@ def ingestion_groups():
 
         return ingestion()
 
-    return list(map(build_group, trip_type_list))
+    return list(map(build_group, TRIP_TYPE_LIST))
+
+
+@task_group(group_id="load_to_fact_table")
+def load_to_fact_table_group():
+    def build_group(trip_type: str):
+        @task_group(group_id=f"{trip_type}")
+        def load_to_fact_table():
+            insert_to_production_table(trip_type)
+
+        return load_to_fact_table()
+
+    return list(map(build_group, TRIP_TYPE_LIST))
 
 
 with DAG(
@@ -62,4 +75,5 @@ with DAG(
 ) as dag:
     start = EmptyOperator(task_id="start")
     end = EmptyOperator(task_id="end")
-    start >> ingestion_groups() >> dbt_task() >> end
+    trip_type = "yellow"
+    (start >> ingestion_groups() >> dbt_task() >> load_to_fact_table_group() >> end)

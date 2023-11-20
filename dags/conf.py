@@ -25,5 +25,14 @@ class Config:
         "green": "GREEN_TRIP_RECORD_RAW",
     }
 
+    SNOwFLAKE_STAGING_SCHEMA = "STAGING"
+
+    SNOWFLAKE_PRODUCTION_SCHEMA = "PROD"
+
+    SNOwFLAKE_FACT_TABLE = {
+        "yellow": "FACT_YELLOW_TRIP",
+        "green": "FACT_GREEN_TRIP",
+    }
+
 
 config = Config()
