@@ -1,3 +1,51 @@
+checks for YELLOW_TRIP_RECORD_RAW:
+  - missing_count(vendorid) = 0:
+      name: All products have a key
+  - schema:
+      fail:
+        when required column missing:
+          [
+            VENDORID,
+            TPEP_PICKUP_DATETIME,
+            TPEP_DROPOFF_DATETIME,
+            STORE_AND_FWD_FLAG,
+            RATECODEID,
+            PULOCATIONID,
+            DOLOCATIONID,
+            PAYMENT_TYPE,
+            PASSENGER_COUNT,
+            TRIP_DISTANCE,
+            FARE_AMOUNT,
+            EXTRA,
+            MTA_TAX,
+            TIP_AMOUNT,
+            TOLLS_AMOUNT,
+            IMPROVEMENT_SURCHARGE,
+            TOTAL_AMOUNT,
+            CONGESTION_SURCHARGE,
+            AIRPORT_FEE
+          ]
+        when wrong column type:
+          VENDORID: integer
+          TPEP_PICKUP_DATETIME: timestamp_ntz
+          TPEP_DROPOFF_DATETIME: timestamp_ntz
+          STORE_AND_FWD_FLAG: varchar
+          RATECODEID: float
+          PULOCATIONID: integer
+          DOLOCATIONID: integer 
+          PAYMENT_TYPE: number
+          PASSENGER_COUNT: float
+          TRIP_DISTANCE: float
+          FARE_AMOUNT: float
+          EXTRA: float
+          MTA_TAX: float
+          TIP_AMOUNT: float
+          TOLLS_AMOUNT: float
+          IMPROVEMENT_SURCHARGE: float
+          TOTAL_AMOUNT: float
+          CONGESTION_SURCHARGE: float
+          AIRPORT_FEE: float
+
 checks for GREEN_TRIP_RECORD_RAW:
   - missing_count(vendorid) = 0:
       name: All products have a key
@@ -29,3 +77,22 @@ checks for GREEN_TRIP_RECORD_RAW:
         when wrong column type:
           VENDORID: integer
           LPEP_PICKUP_DATETIME: timestamp_ntz
+          LPEP_DROPOFF_DATETIME: timestamp_ntz
+          STORE_AND_FWD_FLAG: varchar
+          RATECODEID: float
+          PULOCATIONID: integer
+          DOLOCATIONID: integer 
+          PASSENGER_COUNT: float
+          TRIP_DISTANCE: float
+          FARE_AMOUNT: float
+          EXTRA: float
+          MTA_TAX: float
+          TIP_AMOUNT: float
+          TOLLS_AMOUNT: float
+          EHAIL_FEE: integer
+          IMPROVEMENT_SURCHARGE: float
+          TOTAL_AMOUNT: float
+          PAYMENT_TYPE: float
+          TRIP_TYPE: float
+          CONGESTION_SURCHARGE: float
+
