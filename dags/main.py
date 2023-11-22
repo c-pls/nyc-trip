@@ -5,15 +5,15 @@ from airflow.decorators import task_group
 from airflow.models.baseoperator import chain
 from airflow.operators.empty import EmptyOperator
 from airflow.utils.dates import days_ago
-from pull_raw_data import pull_raw_data
-from s3 import push_raw_data_s3, delete_raw_data
-from sf import (
+from tasks.pull_raw_data import pull_raw_data
+from tasks.s3 import push_raw_data_s3, delete_raw_data
+from tasks.sf import (
     create_external_stage_s3,
     load_to_raw_table,
     truncate_raw_table,
     insert_to_production_table,
 )
-from dbt_task import dbt_task
+from tasks.dbt_task import dbt_task
 
 TRIP_TYPE_LIST = ["yellow", "green"]
 
