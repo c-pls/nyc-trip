@@ -11,3 +11,7 @@ RUN pip install -r requirements.txt
 # COPY dbt-requirements.txt ./
 # RUN python -m virtualenv dbt_venv && source dbt_venv/bin/activate && \
 #     pip install --no-user --no-cache-dir -r dbt-requirements.txt && deactivate
+
+COPY soda-requirements.txt ./
+RUN python -m virtualenv soda_venv && source soda_venv/bin/activate && \
+    pip install --no-user --no-cache-dir -r soda-requirements.txt && deactivate
