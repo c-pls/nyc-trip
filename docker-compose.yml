@@ -18,6 +18,9 @@ x-airflow-common: &airflow-common
     - ./config:/opt/airflow/config
     - ./include:/opt/airflow/include
     - ./dbt:/opt/airflow/dbt
+    - ./soda:/opt/airflow/soda
+  env_file:
+    - ".env"
   depends_on:
     - postgres
 
