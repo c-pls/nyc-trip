@@ -1,0 +1,170 @@
+checks for RATE_CODE_DIMENSION:
+  - invalid_count(RATE_CODE_ID) = 0:
+      valid values: [1, 2, 3, 4, 5, 6]
+  - schema:
+      fail:
+        when required column missing:
+          [RATE_CODE_ID, RATE_CODE_KEY, RATE_CODE_EFFECT]
+        when wrong column type:
+          RATE_CODE_ID: int
+          RATE_CODE_KEY: int
+          RATE_CODE_EFFECT: string
+
+checks for PAYMENT_TYPE_DIMENSION:
+  - invalid_count(PAYMENT_TYPE_ID) = 0:
+      valid values: [1, 2, 3, 4, 5, 6]
+  - schema:
+      fail:
+        when required column missing:
+          [PAYMENT_TYPE_ID, PAYMENT_TYPE_KEY, PAYMENT_TYPE_NAME]
+        when wrong column type:
+          PAYMENT_TYPE_ID: int
+          PAYMENT_TYPE_KEY: int
+          PAYMENT_TYPE_NAME: string
+
+checks for TRIP_TYPE_DIMENSION:
+  - invalid_count(TRIP_TYPE_ID) = 0:
+      valid values: [1, 2]
+  - schema:
+      fail:
+        when required column missing:
+          [TRIP_TYPE_ID, TRIP_TYPE_KEY, TRIP_TYPE_NAME]
+        when wrong column type:
+          TRIP_TYPE_ID: int
+          TRIP_TYPE_KEY: int
+          TRIP_TYPE_NAME: string
+
+checks for VENDOR_DIMENSION:
+  - invalid_count(VENDOR_ID) = 0:
+      valid values: [1, 2]
+  - schema:
+      fail:
+        when required column missing: [VENDOR_ID, VENDOR_KEY, VENDOR_NAME]
+        when wrong column type:
+          VENDOR_ID: int
+          VENDOR_KEY: int
+          VENDOR_NAME: string
+
+checks for TAXI_ZONE_DIMENSION:
+  - missing_count(LOCATIONID) = 0:
+      name: Not null localtion_id
+  - schema:
+      fail:
+        when required column missing:
+          [LOCATIONID, TAXI_ZONE_KEY, ZONE, BOROUGH, SERVICE_ZONE]
+        when wrong column type:
+          LOCATIONID: int
+          TAXI_ZONE_KEY: int
+          ZONE: string
+          BOROUGH: string
+          SERVICE_ZONE: string
+
+checks for DATE_DIMENSION:
+  - invalid_count(DAY_OF_WEEK) = 0:
+      name: All weekdays are in range 0-6
+      valid min: 0
+      valid max: 6
+
+  - invalid_count(DAY_NAME) = 0:
+      name: All day name in a week is valid
+      valid values:
+        [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ]
+
+  - invalid_count(DAY_OF_MONTH) = 0:
+      name: All day of month are in range 1-31
+      valid min: 1
+      valid max: 31
+
+  - invalid_count(DAY_OF_YEAR) = 0:
+      name: All day of month are in range 1-366
+      valid min: 1
+      valid max: 366
+
+  - invalid_count(WEEK_OF_YEAR) = 0:
+      name: All day of month are in range 1-53
+      valid min: 1
+      valid max: 53
+  - invalid_count(MONTH) = 0:
+      name: All day of month are in range 1-12
+      valid min: 1
+      valid max: 12
+
+  - invalid_count(MONTH_NAME) = 0:
+      name: Valid month name
+      valid values:
+        [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ]
+
+  - invalid_count(QUARTER) = 0:
+      name: Valid quarter 1 - 4
+      valid min: 1
+      valid max: 4
+
+  - invalid_count(YEAR) = 0:
+      name: Year > 1970
+      valid min: 1970
+
+  - invalid_count(IS_WEEKEND) = 0:
+      name: Check IS_WEEKEND Boolean value
+      valid values: [TRUE, FALSE]
+  - invalid_count(IS_WEEKEND) = 0:
+      name: Check IS_WEEKEND Boolean value
+      valid values: [TRUE, FALSE]
+  - invalid_count(IS_WORKDAY) = 0:
+      name: Check IS_WORKDAY Boolean value
+      valid values: [TRUE, FALSE]
+
+  - schema:
+      fail:
+        when required column missing:
+          [
+            DATE_KEY,
+            DATE,
+            DAY_OF_WEEK,
+            DAY_NAME,
+            DAY_OF_MONTH,
+            DAY_OF_YEAR,
+            WEEK_OF_YEAR,
+            MONTH,
+            MONTH_NAME,
+            QUARTER,
+            YEAR,
+            IS_HOLIDAY,
+            IS_WEEKEND,
+            IS_WORKDAY,
+          ]
+        when wrong column type:
+          DATE_KEY: int
+          DATE: date
+          DAY_OF_WEEK: int
+          DAY_NAME: string
+          DAY_OF_MONTH: int
+          DAY_OF_YEAR: int
+          WEEK_OF_YEAR: int
+          MONTH: int
+          MONTH_NAME: string
+          QUARTER: int
+          YEAR: int
+          IS_HOLIDAY: boolean
+          IS_WEEKEND: boolean
+          IS_WORKDAY: boolean

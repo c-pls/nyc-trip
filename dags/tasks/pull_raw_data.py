@@ -8,9 +8,9 @@ from conf import config
 
 @task(task_id="pull_raw_data")
 def pull_raw_data(trip_type: str):
-    url = f"{config.BASE_DATASOURCE_URL}/{trip_type}_tripdata_2023-05.parquet"
+    url = f"{config.BASE_DATASOURCE_URL}/{trip_type}_tripdata_2023-01.parquet"
 
-    folder_path = os.path.join(config.HOME_DIR, "raw_data")
+    folder_path = os.path.join(config.PROJECT_ROOT, "raw_data")
 
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)

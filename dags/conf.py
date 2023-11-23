@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Config:
-    HOME_DIR = os.getenv("AIRFLOW_HOME")
+    PROJECT_ROOT = os.getenv("AIRFLOW_HOME")
 
     BASE_DATASOURCE_URL = "https://d37ci6vzurychx.cloudfront.net/trip-data"
 
@@ -33,6 +33,8 @@ class Config:
         "yellow": "FACT_YELLOW_TRIP",
         "green": "FACT_GREEN_TRIP",
     }
+
+    SODA_DATASOURCE = "nyc_trip"
 
 
 config = Config()

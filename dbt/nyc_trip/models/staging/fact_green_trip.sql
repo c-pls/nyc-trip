@@ -21,11 +21,11 @@
     TOTAL_AMOUNT
 FROM
     NYC_TRIP.RAW.GREEN_TRIP_RECORD_RAW rt
-    INNER JOIN NYC_TRIP.STAGING.TAXI_ZONE_DIMENSION tzd_pu ON rt.pulocationid = tzd_pu.locationid
-    INNER JOIN NYC_TRIP.STAGING.TAXI_ZONE_DIMENSION tzd_do ON rt.dolocationid = tzd_do.locationid
-    INNER JOIN NYC_TRIP.STAGING.DATE_DIMENSION dd_pu ON TO_DATE(rt.lpep_pickup_datetime) = dd_pu.date
-    INNER JOIN NYC_TRIP.STAGING.DATE_DIMENSION dd_do ON TO_DATE(rt.lpep_dropoff_datetime) = dd_do.date
-    INNER JOIN NYC_TRIP.STAGING.RATE_CODE_DIMENSION rcd ON rt.RATECODEID = rcd.rate_code_id
-    INNER JOIN NYC_TRIP.STAGING.VENDOR_DIMENSION vd ON rt.vendorid = vd.vendor_id
-    INNER JOIN NYC_TRIP.STAGING.PAYMENT_TYPE_DIMENSION pyd ON rt.payment_type = pyd.payment_type_id
-    INNER JOIN NYC_TRIP.STAGING.TRIP_TYPE_DIMENSION ttd ON rt.trip_type = ttd.trip_type_id
+    INNER JOIN NYC_TRIP.PROD.TAXI_ZONE_DIMENSION tzd_pu ON rt.pulocationid = tzd_pu.locationid
+    INNER JOIN NYC_TRIP.PROD.TAXI_ZONE_DIMENSION tzd_do ON rt.dolocationid = tzd_do.locationid
+    INNER JOIN NYC_TRIP.PROD.DATE_DIMENSION dd_pu ON TO_DATE(rt.lpep_pickup_datetime) = dd_pu.date
+    INNER JOIN NYC_TRIP.PROD.DATE_DIMENSION dd_do ON TO_DATE(rt.lpep_dropoff_datetime) = dd_do.date
+    INNER JOIN NYC_TRIP.PROD.RATE_CODE_DIMENSION rcd ON rt.RATECODEID = rcd.rate_code_id
+    INNER JOIN NYC_TRIP.PROD.VENDOR_DIMENSION vd ON rt.vendorid = vd.vendor_id
+    INNER JOIN NYC_TRIP.PROD.PAYMENT_TYPE_DIMENSION pyd ON rt.payment_type = pyd.payment_type_id
+    INNER JOIN NYC_TRIP.PROD.TRIP_TYPE_DIMENSION ttd ON rt.trip_type = ttd.trip_type_id

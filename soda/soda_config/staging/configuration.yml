@@ -10,4 +10,4 @@ data_source nyc_trip:
     session_parameters:
       QUERY_TAG: soda-queries
       QUOTED_IDENTIFIERS_IGNORE_CASE: false
-  schema: raw
+  schema: STAGING
