@@ -1,0 +1,13 @@
+data_source nyc_trip:
+  type: snowflake
+  connection:
+    username: ${SNOWFLAKE_USER}
+    password: ${SNOWFLAKE_PASSWORD}
+    account: ${SNOWFLAKE_ACCOUNT}
+    database: NYC_TRIP
+    warehouse: DE_WH
+    role: AIRFLOW_ROLE
+    session_parameters:
+      QUERY_TAG: soda-queries
+      QUOTED_IDENTIFIERS_IGNORE_CASE: false
+  schema: STAGING

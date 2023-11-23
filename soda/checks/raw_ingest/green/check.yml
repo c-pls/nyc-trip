@@ -1,0 +1,51 @@
+checks for GREEN_TRIP_RECORD_RAW:
+  - missing_count(vendorid) = 0:
+      name: All products have a key
+  - invalid_count(STORE_AND_FWD_FLAG) = 0:
+      valid values: ["Y", "N"]
+  - schema:
+      fail:
+        when required column missing:
+          [
+            VENDORID,
+            LPEP_PICKUP_DATETIME,
+            LPEP_DROPOFF_DATETIME,
+            STORE_AND_FWD_FLAG,
+            RATECODEID,
+            PULOCATIONID,
+            DOLOCATIONID,
+            PASSENGER_COUNT,
+            TRIP_DISTANCE,
+            FARE_AMOUNT,
+            EXTRA,
+            MTA_TAX,
+            TIP_AMOUNT,
+            TOLLS_AMOUNT,
+            EHAIL_FEE,
+            IMPROVEMENT_SURCHARGE,
+            TOTAL_AMOUNT,
+            PAYMENT_TYPE,
+            TRIP_TYPE,
+            CONGESTION_SURCHARGE,
+          ]
+        when wrong column type:
+          VENDORID: integer
+          LPEP_PICKUP_DATETIME: timestamp_ntz
+          LPEP_DROPOFF_DATETIME: timestamp_ntz
+          STORE_AND_FWD_FLAG: string
+          RATECODEID: int
+          PULOCATIONID: int
+          DOLOCATIONID: int
+          PASSENGER_COUNT: int
+          TRIP_DISTANCE: float
+          FARE_AMOUNT: float
+          EXTRA: float
+          MTA_TAX: float
+          TIP_AMOUNT: float
+          TOLLS_AMOUNT: float
+          EHAIL_FEE: integer
+          IMPROVEMENT_SURCHARGE: float
+          TOTAL_AMOUNT: float
+          PAYMENT_TYPE: int
+          TRIP_TYPE: int
+          CONGESTION_SURCHARGE: float
