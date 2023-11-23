@@ -20,7 +20,7 @@ def truncate_raw_table(trip_type: str):
 @task(task_id="create_external_stage")
 def create_external_stage_s3(trip_type: str, s3_uri: str):
     with open(
-        f"{config.HOME_DIR}/include/sql/common/snowflake_external_stage_s3.sql", "r"
+        f"{config.PROJECT_ROOT}/include/sql/common/snowflake_external_stage_s3.sql", "r"
     ) as f:
         sql = f.read().format(
             stage_name=f"{trip_type}_stage",
@@ -42,7 +42,7 @@ def load_to_raw_table(trip_type: str):
     stage_name = f"{trip_type}_stage"
 
     with open(
-        f"{config.HOME_DIR}/include/sql/trip/{trip_type}/copy_command.sql", "r"
+        f"{config.PROJECT_ROOT}/include/sql/trip/{trip_type}/copy_command.sql", "r"
     ) as f:
         sql = f.read().format(
             table=config.SNOWFlAKE_RAW_TABLE.get(trip_type), stage_name=stage_name

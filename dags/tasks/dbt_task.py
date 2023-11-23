@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from conf import config
 from cosmos import DbtTaskGroup, ProfileConfig, ProjectConfig
 from cosmos.profiles import SnowflakeUserPasswordProfileMapping
@@ -20,7 +21,7 @@ def dbt_task():
     dbt_tg = DbtTaskGroup(
         group_id="dbt_transform_fact_table",
         project_config=ProjectConfig(
-            dbt_project_path=Path(f"{config.HOME_DIR}/dbt/nyc_trip")
+            dbt_project_path=Path(f"{config.PROJECT_ROOT}/dbt/nyc_trip")
         ),
         profile_config=profile_config,
         default_args={"retries": 0},
