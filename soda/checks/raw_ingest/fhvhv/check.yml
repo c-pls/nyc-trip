@@ -1,0 +1,55 @@
+checks for FHVHV_TRIP_RECORD_RAW:
+  - schema:
+      fail:
+        when required column missing:
+          [
+            HVFHS_LICENSE_NUM,
+            DISPATCHING_BASE_NUM,
+            ORIGINATING_BASE_NUM,
+            REQUEST_DATETIME,
+            ON_SCENE_DATETIME,
+            PICKUP_DATETIME,
+            DROPOFF_DATETIME,
+            PULOCATIONID,
+            DOLOCATIONID,
+            TRIP_MILES,
+            TRIP_TIME,
+            BASE_PASSENGER_FARE,
+            TOLLS,
+            BCF,
+            SALES_TAX,
+            CONGESTION_SURCHARGE,
+            AIRPORT_FEE,
+            TIPS,
+            DRIVER_PAY,
+            SHARED_REQUEST_FLAG,
+            SHARED_MATCH_FLAG,
+            ACCESS_A_RIDE_FLAG,
+            WAV_REQUEST_FLAG,
+            WAV_MATCH_FLAG,
+          ]
+        when wrong column type:
+          HVFHS_LICENSE_NUM: string
+          DISPATCHING_BASE_NUM: string
+          ORIGINATING_BASE_NUM: string
+          REQUEST_DATETIME: timestamp_ntz
+          ON_SCENE_DATETIME: timestamp_ntz
+          PICKUP_DATETIME: timestamp_ntz
+          DROPOFF_DATETIME: timestamp_ntz
+          PULOCATIONID: int
+          DOLOCATIONID: int
+          TRIP_MILES: float
+          TRIP_TIME: int
+          BASE_PASSENGER_FARE: float
+          TOLLS: float
+          BCF: float
+          SALES_TAX: float
+          CONGESTION_SURCHARGE: float
+          AIRPORT_FEE: float
+          TIPS: float
+          DRIVER_PAY: float
+          SHARED_REQUEST_FLAG: string
+          SHARED_MATCH_FLAG: string
+          ACCESS_A_RIDE_FLAG: string
+          WAV_REQUEST_FLAG: string
+          WAV_MATCH_FLAG: string
