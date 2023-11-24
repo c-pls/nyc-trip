@@ -17,7 +17,7 @@ from tasks.sf import (
 )
 from tasks.soda_task import soda_scan
 
-TRIP_TYPE_LIST = ["yellow", "green"]
+TRIP_TYPE_LIST = ["yellow", "green", "fhvhv"]
 
 
 default_args = {
@@ -51,7 +51,7 @@ def ingestion_groups():
                 [
                     delete_raw_data(s3_uri),
                     soda_scan(
-                        task_id=f"Scan_{trip_type}_raw_data",
+                        task_id=f"scan_{trip_type}_raw_data",
                         data_source=config.SODA_DATASOURCE,
                         soda_configuration_path=f"{config.PROJECT_ROOT}/soda/soda_config/raw/configuration.yml",
                         sodacl_yaml_file_path=f"{config.PROJECT_ROOT}/soda/checks/raw_ingest/{trip_type}/check.yml",

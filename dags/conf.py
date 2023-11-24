@@ -23,6 +23,7 @@ class Config:
     SNOWFlAKE_RAW_TABLE = {
         "yellow": "YELLOW_TRIP_RECORD_RAW",
         "green": "GREEN_TRIP_RECORD_RAW",
+        "fhvhv": "FHVHV_TRIP_RECORD_RAW",
     }
 
     SNOwFLAKE_STAGING_SCHEMA = "STAGING"
@@ -32,6 +33,7 @@ class Config:
     SNOwFLAKE_FACT_TABLE = {
         "yellow": "FACT_YELLOW_TRIP",
         "green": "FACT_GREEN_TRIP",
+        "fhvhv": "FACT_FHVHV_TRIP",
     }
 
     SODA_DATASOURCE = "nyc_trip"
