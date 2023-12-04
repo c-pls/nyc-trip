@@ -86,7 +86,6 @@ with DAG(
 ) as dag:
     start = EmptyOperator(task_id="start")
     end = EmptyOperator(task_id="end")
-    trip_type = "yellow"
     (
         start
         >> ingestion_groups()
@@ -98,26 +97,5 @@ with DAG(
         )
         >> dbt_task()
         >> load_to_fact_table_group()
-        >> end
-    )
-
-with DAG(
-    dag_id="test",
-    default_args=default_args,
-    start_date=days_ago(n=0),
-    schedule=None,
-    catchup=False,
-    template_searchpath="include",
-) as dag:
-    start = EmptyOperator(task_id="start")
-    end = EmptyOperator(task_id="end")
-    (
-        start
-        >> soda_scan(
-            task_id="test",
-            data_source="nyc_trip",
-            soda_configuration_path=f"{config.PROJECT_ROOT}/soda/configuration.yml",
-            sodacl_yaml_file_path=f"{config.PROJECT_ROOT}/soda/checks/raw_data_check.yml",
-        )
         >> end
     )
